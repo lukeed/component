@@ -34,7 +34,7 @@ rollup({
 		dest:umd,
 		format: 'umd',
 		exports: 'default',
-		moduleName: pkg.name
+		moduleName: pkg['umd:name'] || pkg.name
 	}).then(_ => {
 		const data = fs.readFileSync(umd, 'utf8');
 
