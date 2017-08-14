@@ -10,6 +10,7 @@ const umd = pkg['umd:main'];
 rollup({
 	useStrict: false,
 	entry: 'src/index.js',
+	external: ['preact'],
 	plugins: [
 		require('rollup-plugin-node-resolve')(),
 		require('rollup-plugin-buble')({
