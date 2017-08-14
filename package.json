@@ -1,0 +1,35 @@
+{
+  "name": "preact-foobar",
+  "version": "0.0.0",
+  "repository": "lukeed/preact-foobar",
+  "description": "Foobar component for Preact",
+  "umd:main": "dist/preact-foobar.min.js",
+  "module": "dist/preact-foobar.es.js",
+  "main": "dist/preact-foobar.js",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "author": {
+    "name": "Luke Edwards",
+    "email": "luke.edwards05@gmail.com",
+    "url": "https://lukeed.com"
+  },
+  "scripts": {
+    "build": "node build",
+    "pretest": "npm run build"
+  },
+  "keywords": [],
+  "dependencies": {},
+  "devDependencies": {
+    "gzip-size": "^3.0.0",
+    "pretty-bytes": "^4.0.2",
+    "rollup": "^0.47.4",
+    "rollup-plugin-buble": "^0.15.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "uglify-js": "^2.8.22"
+  },
+  "peerDependencies": {
+    "preact": "^8.1.0"
+  }
+}
