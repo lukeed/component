@@ -8,8 +8,7 @@ const pkg = require('../package');
 const umd = pkg['umd:main'];
 
 rollup({
-	useStrict: false,
-	entry: 'src/index.js',
+	input: 'src/index.js',
 	external: ['preact'],
 	plugins: [
 		require('rollup-plugin-node-resolve')(),
@@ -21,30 +20,27 @@ rollup({
 }).then(bun => {
 	bun.write({
 		format: 'cjs',
-		dest: pkg.main,
-		exports: 'default'
+		file: pkg.main
 	});
 
 	bun.write({
 		format: 'es',
-		dest: pkg.module,
-		exports: 'default'
+		file: pkg.module
 	});
 
 	bun.write({
-		dest:umd,
+		file: umd,
 		format: 'umd',
-		exports: 'default',
-		moduleName: pkg['umd:name'] || pkg.name
+		name: pkg['umd:name'] || pkg.name
 	}).then(_ => {
 		const data = fs.readFileSync(umd, 'utf8');
 
 		// produce minified output
-		const { code } = minify(data, { fromString:true });
+		const { code } = minify(data);
 		fs.writeFileSync(umd, code);
 
 		// output gzip size
 		const int = sizer.sync(code);
 		console.log(`~> gzip size: ${ pretty(int) }`);
-	}).catch(console.log);
-}).catch(err => console.log(err))
+	})
+}).catch(console.error)
